@@ -11,6 +11,7 @@ class Distance
 {
     private const EQUATOR_RADIUS = 6378137.000000;   // WGS84 楕円体モデルの地球赤道半径 (長半径) (m)
     private const EARTH_RADIUS = 6356752.314245; // WGS84 楕円体モデルの地球極半径 (短半径) (m)
+    private const DISTANCE_JUDGMENT_METERS = 100; // 近さ判定の閾値(m)
     
     /**
      * 友達になれるかもしれない人を検索
@@ -50,7 +51,7 @@ class Distance
             $point2['longitude']
         );
         
-        return $dist <= 100;
+        return $dist <= self::DISTANCE_JUDGMENT_METERS;
     }
     
     /**
