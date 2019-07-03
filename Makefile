@@ -46,8 +46,9 @@ update-apache-conf:
 	sudo cp -ip ${CONF} ${CONF}.bk
 	sudo sed -i -e "s#User apache#User ec2-user#g" ${CONF}
 	sudo sed -i -e "s#Group apache#Group ec2-user#g" ${CONF}
-	sudo sed -i -e 's#DocumentRoot "/var/www/html"#DocumentRoot "/home/ec2-user/environment/laravel/public"#g' ${CONF}
-	sudo sed -i -e 's#<Directory "/var/www/html">#<Directory "/home/ec2-user/environment/laravel/public">#g' ${CONF}
+	sudo sed -i -e 's#DocumentRoot "/var/www/html"#DocumentRoot "/home/ec2-user/environment/hanly/laravel/public"#g' ${CONF}
+	sudo sed -i -e 's#<Directory "/var/www/html">#<Directory "/home/ec2-user/environment/hanly/laravel/public">#g' ${CONF}
+	sudo sed -i -e '151 s#AllowOverride None#AllowOverride All#g' ${CONF}
 	sudo chown root:ec2-user /var/lib/php/7.3/session
 .PHONY: update-apache-conf
 
@@ -55,8 +56,8 @@ DB_CONF=/etc/my.cnf
 update-db-conf:
 	sudo cp -ip ${DB_CONF} ${DB_CONF}.bk
 	sudo sed -i -e '$$ a \\n[client]' ${DB_CONF}
-	sudo sed -i -e '$$ a default-character-set=utf8' ${DB_CONF}
-	sudo sed -i -e 's#\[mysqld\]#\[mysqld\]\ncharacter-set-server=utf8#' ${DB_CONF}
+	sudo sed -i -e '$$ a default-character-set=utf8mb4' ${DB_CONF}
+	sudo sed -i -e 's#\[mysqld\]#\[mysqld\]\ncharacter-set-server=utf8mb4#' ${DB_CONF}
 .PHONY: update-db-conf
 	
 check:
