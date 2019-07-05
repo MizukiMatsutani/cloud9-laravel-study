@@ -29,7 +29,7 @@ class Distance
             ];
             
             if ($this->isNear($myPin, $point)) {
-                $newFriendIds[] = $friend['id'];
+                $newFriendIds[] = $friend['friends_id'];
             }
         }
         
