@@ -59,7 +59,7 @@ update-db-conf:
 	sudo sed -i -e '$$ a default-character-set=utf8mb4' ${DB_CONF}
 	sudo sed -i -e 's#\[mysqld\]#\[mysqld\]\ncharacter-set-server=utf8mb4#' ${DB_CONF}
 .PHONY: update-db-conf
-	
+
 check:
 	php -v
 	composer -V
