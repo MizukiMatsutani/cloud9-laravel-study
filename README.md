@@ -5,9 +5,9 @@
 1. AWS Cloud9のプロジェクトを作成（Amazon Linux版）
 1. C9上で「File > Upload Local Files...」からアップロード
 1. C9のターミナルで以下コマンドを叩いていく
-    1. `unzip cloud9-laravel-study.zip`
+    1. `unzip cloud9-laravel-study-master.zip`
     1. `mv cloud9-laravel-study-master hanly`
-    1. `rm -rf cloud9-laravel-study.zip`
+    1. `rm -rf cloud9-laravel-study-master.zip`
     1. `cd hanly`
     1. `make install DB_ROOT_PASS=**DBのパスワード**`
         1. 途中で「Enter password:」で止まるのでそのままEnter
