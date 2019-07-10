@@ -13,6 +13,28 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/signup', 'Api\SignupController@signup')->name('api.signup.post');
+
+Route::get('/oauth/client-credentials' , function () {
+    $secret = \DB::table('oauth_clients')
+        ->select(['id', 'secret'])
+        ->first();
+        
+    return response()->json([
+        'client_id' => $secret->id,
+        'client_secret' => $secret->secret,
+    ]);
+});
+
+Route::middleware('auth:api')->group(function () {
+    
+    Route::get('/me', 'Api\FriendController@me')->name('api.me.get');
+    
+    Route::post('/me/image', 'Api\ImageController@store')->name('api.me.image.post');
+    
+    Route::post('/my/pin', 'Api\PinController@store')->name('api.my.pin.post');
+    
+    Route::get('/friends/{userId}', 'Api\FriendController@show')->name('api.friends.get');
+    
+    Route::get('/friends', 'Api\FriendController@list')->name('api.friends.list.get');
 });

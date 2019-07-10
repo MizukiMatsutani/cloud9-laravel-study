@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Eloquents\Friend' => 'App\Policies\FriendPolicy',
     ];
 
     /**
@@ -25,6 +26,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // パスワードグラントのみ利用
+        Passport::routes(function($router){
+            $router->forAccessTokens();
+            // $router->forAuthorization();
+            // $router->forTransientTokens();
+        }, ['prefix' => 'api/oauth']);
     }
 }
