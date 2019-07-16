@@ -29,4 +29,9 @@ class FriendsRelationship extends Model
         ]);
         $myRelation->save();
     }
+    
+    public function friend()
+    {
+        return $this->belongsTo(\App\Eloquents\Friend::class, 'own_friends_id', 'id');
+    }
 }

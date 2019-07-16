@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         
         App\Providers\DistanceServiceProvider::class,
+        App\Providers\DataBaseQueryServiceProvider::class,
 
     ],
 

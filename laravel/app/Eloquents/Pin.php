@@ -33,4 +33,9 @@ class Pin extends Model
         
         return $pin;
     }
+    
+    public function friend()
+    {
+        return $this->hasOne(\App\Eloquents\Friend::class, 'id', 'friends_id');
+    }
 }
